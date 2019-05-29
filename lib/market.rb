@@ -45,4 +45,16 @@ class Market
     end
     total
   end
+
+  def sell(food, quantity)
+    if total_inventory.keys.include?(food) && total_inventory[food] < quantity
+    elsif !total_inventory.keys.include?(food)
+      return false
+    else true
+      @vendors.find do |vendor|
+          vendor.inventory[food] -= quantity
+        # binding.pry
+      end
+    end
+  end
 end
