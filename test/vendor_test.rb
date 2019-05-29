@@ -1,6 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/vendor'
+require 'pry'
 
 class VendorTest < Minitest::Test
 
@@ -19,11 +20,13 @@ class VendorTest < Minitest::Test
   end
 
   def test_it_can_check_stock
-    assert_equal ("Peaches", 30), @vendor.stock
+    assert_equal 0, @vendor.check_stock("Peaches")
+    @vendor.stock("Peaches", 30)
     assert_equal 30, @vendor.check_stock("Peaches")
-    assert_equal ("Peaches", 25), @vendor.stock
+    @vendor.stock("Peaches", 25)
     assert_equal 55, @vendor.check_stock("Peaches")
     @vendor.stock("Tomatoes", 12)
     expected = {"Peaches"=>55, "Tomatoes"=>12}
     assert_equal expected, @vendor.inventory
+  end
 end
