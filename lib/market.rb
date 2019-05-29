@@ -35,4 +35,14 @@ class Market
     end
     items.flatten.sort.uniq
   end
+
+  def total_inventory
+    total = Hash.new(0)
+    @vendors.each do |vendor|
+      vendor.inventory.find_all do |food, amount|
+        total[food] += amount
+      end
+    end
+    total
+  end
 end
