@@ -9,4 +9,20 @@ class Market
   def add_vendor(vendor)
     @vendors << vendor
   end
+
+  def vendor_names
+    @vendors.map do |vendor|
+      vendor.name
+    end
+  end
+
+  def vendors_that_sell(food)
+    here = []
+    @vendors.each do |vendor|
+      if vendor.inventory.keys.include?(food)
+        here << vendor
+      end
+    end
+    here
+  end
 end
